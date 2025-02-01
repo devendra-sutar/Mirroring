@@ -3,7 +3,7 @@ name: Sync to GitLab
 on:
   push:
     branches:
-      - master  # This is the GitHub default branch
+      - master  # This is the GitHub branch, change it to 'main' if needed
 
 jobs:
   sync:
@@ -22,4 +22,5 @@ jobs:
           git config --global user.email "devendra@example.com"
           git config --global user.name "Devendra Sutar"
           git remote add gitlab https://oauth2:${GITLAB_TOKEN}@gitlab.com/devendra-sutar/bash.git
+          git fetch --unshallow  # Fetch the full history if shallow clone was used
           git push --mirror gitlab
